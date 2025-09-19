@@ -1,33 +1,22 @@
 # Telegram FX Signals Bot (Railway)
 
-## Что входит
-- `main_full_bot_signals_multi_rl.py` — основной бот с rate-limiter и фильтрами сигналов
-- `Procfile` — запуск worker-а на Railway
-- `requirements.txt` — зависимости
+## Included
+- `main_full_bot_signals_multi_rl.py` — main bot with signals & rate limiting
+- `Procfile` — defines Railway worker start
+- `requirements.txt` — dependencies
+- `runtime.txt` — force Railway to use Python 3.11.9 (fix imghdr error)
+- `README.md` — instructions
 
-## Переменные окружения (Railway → Variables)
-- `TELEGRAM_BOT_TOKEN` — токен бота из BotFather
-- `TWELVE_DATA_KEY` — API ключ TwelveData
-- (опционально) `TD_RATE_LIMIT_PER_MIN` — лимит запросов в минуту (по умолчанию 8)
+## Railway Variables
+- `TELEGRAM_BOT_TOKEN` — token from BotFather
+- `TWELVE_DATA_KEY` — TwelveData API key
+- optional: `TD_RATE_LIMIT_PER_MIN` (default 8)
 
-## Деплой
-1. Создать репозиторий на GitHub и загрузить эти три файла.
-2. На Railway: New Project → Deploy from GitHub → выбрать репозиторий.
-3. В разделе Variables добавить переменные указаные выше.
-4. Нажать *Redeploy*.
-5. В Telegram написать боту команду `/start`.
+## Deploy
+1. Push these files to GitHub repo.
+2. On Railway: New Project → Deploy from GitHub → select repo.
+3. Add Variables above.
+4. Redeploy.
+5. In Telegram: /start
 
-## Команды
-- `/start` — включить сигналы
-- `/stop` — выключить сигналы
-- `/stats` — простая статистика
-- `/pairs` — управление списком валютных пар
-  - `/pairs list`
-  - `/pairs add EUR_USD USDJPY` (поддерживаются `_` и `/`)
-  - `/pairs remove EUR_USD`
-  - `/pairs set EUR_USD GBP_USD ...`
-  - `/pairs clear`
-
-## Примечания
-- TwelveData отдаёт время в UTC. Для локального времени можно добавить конвертацию в функции `compute_entry_time`.
-- Rate limiter не позволит превышать бесплатные 8 запросов/минуту.
+Python version is pinned to 3.11.9 via `runtime.txt`.
